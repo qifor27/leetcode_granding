@@ -27,13 +27,22 @@ File harus berisi:
 2. **Deskripsi Soal** — Penjelasan lengkap dalam Bahasa Indonesia
 3. **Contoh** — Semua contoh dari soal dengan penjelasan
 4. **Constraints** — Batasan input
-5. **Analisis & Cara Berpikir** — Pendekatan dari brute force ke optimal, langkah demi langkah
-6. **Kode Solusi** — Dalam Python3 dengan komentar
-7. **Kompleksitas** — Time & Space complexity untuk setiap pendekatan
-8. **Konsep yang Dipelajari** — Teori dan konsep kunci
-9. **Latihan Mandiri** — Instruksi untuk mengerjakan sendiri + test cases
-10. **Checklist** — Progress tracking untuk soal ini
-11. **Soal Terkait** — Soal-soal serupa untuk latihan tambahan
+5. **Kerangka Berpikir** — Langkah-langkah berpikir **seperti dosen mendiktekan**, meliputi:
+   - Tangkap kata kunci dari soal
+   - Visualisasikan dengan contoh kecil
+   - Tentukan strategi/pattern yang dibutuhkan
+   - Tentukan aturan/mekanisme (misalnya aturan pergerakan pointer)
+   - Simulasikan di kertas (JANGAN langsung koding)
+   - Baru tulis kode
+   - Verifikasi dengan edge cases
+   - Ringkasan kerangka berpikir dalam bentuk diagram/box
+6. **Analisis & Cara Berpikir** — Pendekatan dari brute force ke optimal, langkah demi langkah
+7. **Kode Solusi** — Dalam Python3 dengan komentar
+8. **Kompleksitas** — Time & Space complexity untuk setiap pendekatan
+9. **Konsep yang Dipelajari** — Teori dan konsep kunci
+10. **Latihan Mandiri** — Instruksi untuk mengerjakan sendiri + test cases
+11. **Checklist** — Progress tracking untuk soal ini
+12. **Soal Terkait** — Soal-soal serupa untuk latihan tambahan
 
 ## 4. Bahasa
 
