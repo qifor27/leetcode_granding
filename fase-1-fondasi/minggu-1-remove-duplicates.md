@@ -319,28 +319,39 @@ nums = [42]                               # → k=1, nums=[42]
 ## ✍️ Solusi Saya
 
 ```python
-class Solution(object):
-    def removeDuplicates(self, nums):
-        k = 0  # slow pointer — posisi elemen unik terakhir
-        
-        for i in range(1, len(nums)):  # fast pointer
-            if nums[i] != nums[k]:    # elemen baru yang belum ada
-                k += 1                # majukan slow pointer
-                nums[k] = nums[i]     # tulis elemen baru di posisi k
-        
-        return k + 1  # jumlah elemen unik
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+
+        i = 1
+
+        for j in range(1, len(nums)):
+            if nums[j] != nums[i - 1]:
+                nums[i] = nums[j]
+                i += 1
+
+        return i
 ```
 
 ### Penjelasan Baris per Baris
 
 | Baris | Kode | Penjelasan |
 |-------|------|------------|
-| 1 | `k = 0` | Inisialisasi **slow pointer** di index 0 (elemen pertama pasti unik) |
-| 2 | `for i in range(1, len(nums)):` | **Fast pointer** mulai dari index 1, jelajahi seluruh array |
-| 3 | `if nums[i] != nums[k]:` | Bandingkan elemen fast dengan elemen unik terakhir di slow |
-| 4 | `k += 1` | Elemen baru ditemukan → geser slow pointer ke depan |
-| 5 | `nums[k] = nums[i]` | Tulis elemen baru ke posisi slow pointer |
-| 6 | `return k + 1` | Kembalikan jumlah elemen unik (index terakhir + 1) |
+| 1 | `i = 1` | Inisialisasi **slow pointer** di posisi 1. Kenapa 1? Karena elemen pertama (`nums[0]`) **pasti unik** — jadi posisi tulis berikutnya mulai dari index 1 |
+| 2 | `for j in range(1, len(nums)):` | **Fast pointer `j`** mulai dari index 1, menjelajahi seluruh array satu per satu |
+| 3 | `if nums[j] != nums[i - 1]:` | Bandingkan elemen yang sedang dibaca (`nums[j]`) dengan elemen unik **terakhir yang sudah ditulis** (`nums[i-1]`). Jika berbeda → elemen baru! |
+| 4 | `nums[i] = nums[j]` | **Tulis** elemen baru ke posisi slow pointer `i` |
+| 5 | `i += 1` | **Geser** slow pointer maju, siap untuk elemen unik berikutnya |
+| 6 | `return i` | Kembalikan `i` — karena `i` mulai dari 1 dan naik setiap ada elemen baru, nilainya langsung = jumlah elemen unik |
+
+### 🔍 Perbedaan dengan Solusi Referensi
+
+| Aspek | Solusi Referensi | Solusi Kamu |
+|-------|-----------------|-------------|
+| Slow pointer mulai | `k = 0` | `i = 1` |
+| Perbandingan | `nums[i] != nums[k]` | `nums[j] != nums[i - 1]` |
+| Return | `k + 1` | `i` |
+
+> 💡 **Keduanya benar dan hasilnya sama!** Bedanya hanya di mana slow pointer mulai. Solusi kamu memulai `i` dari 1 (posisi tulis berikutnya), sedangkan referensi memulai dari 0 (posisi elemen unik terakhir). Karena kamu mulai dari 1, kamu tidak perlu `+1` saat return.
 
 ### 🔍 Simulasi Detail
 
@@ -348,60 +359,65 @@ class Solution(object):
 
 #### Contoh 1: `nums = [1, 1, 2]`
 
-**Iterasi 1** — `i = 1`, `num = 1`
+**Awal:** `i = 1`
+
+**Iterasi 1** — `j = 1`
 ```
-k = 0
+i = 1
 nums = [1, 1, 2]
-        k  i
+           i
+           j
 
-nums[1] = 1 == nums[0] = 1 → DUPLIKAT, skip
+nums[j] = nums[1] = 1
+nums[i-1] = nums[0] = 1
+1 == 1 → DUPLIKAT, skip
 
-k tetap 0
+i tetap 1
 ```
 
-**Iterasi 2** — `i = 2`, `num = 2`
+**Iterasi 2** — `j = 2`
 ```
-k = 0
+i = 1
 nums = [1, 1, 2]
-        k     i
+           i
+              j
 
-nums[2] = 2 != nums[0] = 1 → ELEMEN BARU!
+nums[j] = nums[2] = 2
+nums[i-1] = nums[0] = 1
+2 != 1 → ELEMEN BARU!
 
-k = 0 + 1 = 1
-nums[1] = nums[2] = 2
-
-nums = [1, 2, 2]
-           k  i
+nums[1] = nums[2] = 2  → nums = [1, 2, 2]
+i = 1 + 1 = 2
 ```
 
-> **Hasil: `k + 1 = 2`** — nums[:2] = [1, 2] ✅
+> **Hasil: `i = 2`** — nums[:2] = [1, 2] ✅
 
 ---
 
 #### Contoh 2: `nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]`
 
-| Step | i | nums[i] | nums[k] | Sama? | Aksi | k | Array (k elemen pertama) |
-|------|---|---------|---------|-------|------|---|--------------------------|
-| 1 | 1 | 0 | 0 | ✅ | Skip | 0 | [0] |
-| 2 | 2 | 1 | 0 | ❌ | k=1, tulis | 1 | [0, 1] |
-| 3 | 3 | 1 | 1 | ✅ | Skip | 1 | [0, 1] |
-| 4 | 4 | 1 | 1 | ✅ | Skip | 1 | [0, 1] |
-| 5 | 5 | 2 | 1 | ❌ | k=2, tulis | 2 | [0, 1, 2] |
-| 6 | 6 | 2 | 2 | ✅ | Skip | 2 | [0, 1, 2] |
-| 7 | 7 | 3 | 2 | ❌ | k=3, tulis | 3 | [0, 1, 2, 3] |
-| 8 | 8 | 3 | 3 | ✅ | Skip | 3 | [0, 1, 2, 3] |
-| 9 | 9 | 4 | 3 | ❌ | k=4, tulis | 4 | [0, 1, 2, 3, 4] |
+| Step | j | nums[j] | nums[i-1] | Sama? | Aksi | i | Array (i elemen pertama) |
+|------|---|---------|-----------|-------|------|---|--------------------------|
+| 1 | 1 | 0 | 0 | ✅ | Skip | 1 | [0] |
+| 2 | 2 | 1 | 0 | ❌ | Tulis, i++ | 2 | [0, 1] |
+| 3 | 3 | 1 | 1 | ✅ | Skip | 2 | [0, 1] |
+| 4 | 4 | 1 | 1 | ✅ | Skip | 2 | [0, 1] |
+| 5 | 5 | 2 | 1 | ❌ | Tulis, i++ | 3 | [0, 1, 2] |
+| 6 | 6 | 2 | 2 | ✅ | Skip | 3 | [0, 1, 2] |
+| 7 | 7 | 3 | 2 | ❌ | Tulis, i++ | 4 | [0, 1, 2, 3] |
+| 8 | 8 | 3 | 3 | ✅ | Skip | 4 | [0, 1, 2, 3] |
+| 9 | 9 | 4 | 3 | ❌ | Tulis, i++ | 5 | [0, 1, 2, 3, 4] |
 
-> **Hasil: `k + 1 = 5`** — nums[:5] = [0, 1, 2, 3, 4] ✅
+> **Hasil: `i = 5`** — nums[:5] = [0, 1, 2, 3, 4] ✅
 
 ### Kompleksitas
 
 | | Nilai |
 |---|---|
 | **Time** | **O(n)** — satu kali loop, setiap elemen diproses tepat sekali |
-| **Space** | **O(1)** — hanya pakai variabel `k` dan `i` |
+| **Space** | **O(1)** — hanya pakai variabel `i` dan `j` |
 
-> ✅ **Verdict:** Solusi ini sudah **100% optimal** — tidak bisa lebih cepat dari O(n) karena harus melihat setiap elemen minimal sekali!
+> ✅ **Verdict:** Solusi ini sudah **100% optimal** — persis yang diharapkan di interview!
 
 ---
 
