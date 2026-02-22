@@ -73,17 +73,13 @@ graph TB
 - [ ] **Proyek:** Buat REST API sederhana dengan Flask/FastAPI
 
 ### 📌 DSA & Problem Solving
-- [ ] Sesuaikan dengan struktur `leetcodeGranding` yang sudah ada:
-  - `fase-1-fondasi` → Big O, basic data structures
-  - `fase-2-array-string` → Array & String patterns
-  - `fase-3-linkedlist-stack` → LinkedList, Stack, Queue
-  - `fase-4-tree-graph` → Tree & Graph traversal
-  - `fase-5-dp` → Dynamic Programming
-  - `fase-6-advanced` → Advanced algorithms
-  - `fase-7-design` → System Design
+- [ ] Sesuaikan dengan struktur `leetcodeGranding` (prioritas interview):
+  - `tier-1-foundation` (Minggu 1-6) → Array, String, Hash Map, Two Pointer, Binary Search, Stack, Sliding Window, Heap
+  - `tier-2-core` (Minggu 7-11) → Linked List, Tree, BST, Graph, BFS/DFS, Union Find
+  - `tier-3-advanced` (Minggu 12-16) → DP, Backtracking, Greedy, Trie, Design Problems, Hard
 
 ### 🎯 Milestone Fase 1
-> Bisa menulis TypeScript & Python dengan percaya diri. Sudah menyelesaikan fase-1 dan fase-2 LeetCode.
+> Bisa menulis TypeScript & Python dengan percaya diri. Sudah menyelesaikan Tier 1 LeetCode (Foundation).
 
 ---
 

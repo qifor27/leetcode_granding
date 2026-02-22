@@ -10,16 +10,19 @@ Ketika user mengatakan "mulai", lakukan langkah-langkah berikut:
 
 Buka `README.md` dan cari soal yang belum di-checklist (`- [ ]`). Identifikasi soal **pertama yang belum dikerjakan** berdasarkan urutan di roadmap.
 
-## 2. Identifikasi Fase dan Minggu
+## 2. Identifikasi Tier dan Minggu
 
 Tentukan soal tersebut berada di:
-- **Fase** berapa (1-7)
+- **Tier** berapa (1-3)
 - **Minggu** berapa
-- **Folder** yang sesuai (fase-1-fondasi, fase-2-array-string, dst.)
+- **Folder** yang sesuai:
+  - Tier 1 (Minggu 1-6) → `tier-1-foundation/`
+  - Tier 2 (Minggu 7-11) → `tier-2-core/`
+  - Tier 3 (Minggu 12-16) → `tier-3-advanced/`
 
 ## 3. Buat File Materi
 
-Buat file markdown di folder fase yang sesuai dengan format nama:
+Buat file markdown di folder tier yang sesuai dengan format nama:
 - `minggu-{N}-{nama-soal}.md` (contoh: `minggu-1-two-sum.md`)
 
 File harus berisi:
