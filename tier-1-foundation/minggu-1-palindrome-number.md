@@ -236,21 +236,15 @@ Ini menghindari masalah overflow dan lebih efisien.
 
 ```python
 def isPalindrome(self, x: int) -> bool:
-    # Edge cases
-    # Negatif → bukan palindrome
-    # Berakhir 0 (tapi bukan 0 sendiri) → bukan palindrome
     if x < 0 or (x > 0 and x % 10 == 0):
         return False
     
     reversed_half = 0
     
-    # Balik setengah angka
     while x > reversed_half:
         reversed_half = reversed_half * 10 + x % 10
         x = x // 10
     
-    # Genap digit: x == reversed_half
-    # Ganjil digit: x == reversed_half // 10 (buang digit tengah)
     return x == reversed_half or x == reversed_half // 10
 ```
 
